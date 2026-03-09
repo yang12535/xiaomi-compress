@@ -5,9 +5,9 @@ services:
     image: jrottenberg/ffmpeg:6.1-ubuntu2204
     entrypoint: ["/bin/bash", "/compress.sh"]
     volumes:
-      - /vol2/1000/2/jk-hc:/input
-      - /vol2/1000/2/jk-ys:/output
-      - /vol2/1000/2/docker_file/xiaomi-compress/logs:/logs
+      - ./input:/input          # 放置待压缩的 mov 文件
+      - ./output:/output        # 压缩后的 mkv 输出
+      - ./logs:/logs            # 日志文件
       - ./compress.sh:/compress.sh:ro
     deploy:
       resources:
