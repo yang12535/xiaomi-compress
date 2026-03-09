@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  video-compress:
+    container_name: xiaomi-compress
+    image: jrottenberg/ffmpeg:6.1-ubuntu2204
+    entrypoint: ["/bin/bash", "/compress.sh"]
+    volumes:
+      - /vol2/1000/2/jk-hc:/input
+      - /vol2/1000/2/jk-ys:/output
+      - /vol2/1000/2/docker_file/xiaomi-compress/logs:/logs
+      - ./compress.sh:/compress.sh:ro
+    deploy:
+      resources:
+        limits:
+          cpus: "8"
+          memory: 4G
+    restart: "no"
